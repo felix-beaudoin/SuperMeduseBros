@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="git commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Input.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635985273309</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="git commit">
+      <created>1635989059100</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635989059100</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

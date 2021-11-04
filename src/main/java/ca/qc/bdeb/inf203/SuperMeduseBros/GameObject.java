@@ -18,6 +18,8 @@ public abstract class GameObject {
 
         x += vx * deltaTemps;
         y += vy * deltaTemps;
+
+
     }
 
     public abstract void draw(GraphicsContext context, long now);
