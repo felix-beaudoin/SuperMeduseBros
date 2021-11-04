@@ -31,6 +31,7 @@ public class Meduse extends GameObject {
     public void update(double deltaTemps) {
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
+        boolean jump = isKeyPressed(KeyCode.SPACE);
 
         ay = 1200;
         if (right && !left) {
@@ -53,6 +54,10 @@ public class Meduse extends GameObject {
 
         }
 
+        if (jump){
+            vy = -600;
+        }
+
 
         if (x <= 0) {
             x = 0;
@@ -64,7 +69,7 @@ public class Meduse extends GameObject {
 
         super.update(deltaTemps);
 
-        if (y > 480)
+        if (y > 480)// juste en attendant
             y = -h;
     }
 
