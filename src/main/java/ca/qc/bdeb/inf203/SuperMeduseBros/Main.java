@@ -27,19 +27,27 @@ public class Main extends Application {
 
 
 
+
         Partie partie = new Partie();
+
 
         var timer = new AnimationTimer() {
             long lastTime = System.nanoTime();
+            final long startTime = lastTime;
             @Override
             public void handle(long now) {
                 double deltaTemps = (now - lastTime) * 1e-9;
                 partie.update(deltaTemps);
-                partie.draw(context);
+                partie.draw(context, now - startTime);
                 lastTime = now;
             }
         };
+
+        scene.setOnKeyPressed(event -> Input.setKeyPressed(event.getCode(), true));
+        scene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
+
         timer.start();
+
         root.getChildren().add(canvas);
         stage.setTitle("Super Meduse Bros");
         stage.getIcons().add(new Image("meduse1.png"));

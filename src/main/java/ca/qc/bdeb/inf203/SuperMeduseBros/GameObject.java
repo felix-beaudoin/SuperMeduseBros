@@ -20,7 +20,7 @@ public abstract class GameObject {
         y += vy * deltaTemps;
     }
 
-    public abstract void draw(GraphicsContext context);
+    public abstract void draw(GraphicsContext context, long now);
 
 
 }

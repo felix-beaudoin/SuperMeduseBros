@@ -21,11 +21,12 @@ public class Partie {
         }
     }
 
-    public void draw(GraphicsContext context){
+    public void draw(GraphicsContext context, long now){
         context.setFill(Color.BLUE);
         context.fillRect(0, 0, w, h);
+
         for (GameObject gameObject : gameObjects) {
-            gameObject.draw(context);
+            gameObject.draw(context, now);
         }
     }
 }
