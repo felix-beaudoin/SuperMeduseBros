@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="git commit" />
+    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="git commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/LastDirection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Plateforme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Meduse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +61,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -158,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635990867727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="git commit">
+      <created>1635990906435</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1635990906435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +191,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="git commit" />
