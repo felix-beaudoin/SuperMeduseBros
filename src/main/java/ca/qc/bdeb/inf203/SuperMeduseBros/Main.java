@@ -20,16 +20,12 @@ public class Main extends Application {
     public void start(Stage stage) {
         double w = 350; double h = 480;
         var root = new StackPane();
-        Scene scene = new Scene(root, w, h);
+        Scene scene = new Scene(root);
 
         Canvas canvas = new Canvas(w, h);
         GraphicsContext context = canvas.getGraphicsContext2D();
 
-
-
-
-        Partie partie = new Partie();
-
+        Partie partie = new Partie(w,h);
 
         var timer = new AnimationTimer() {
             long lastTime = System.nanoTime();
@@ -50,6 +46,7 @@ public class Main extends Application {
 
         root.getChildren().add(canvas);
         stage.setTitle("Super Meduse Bros");
+        stage.setResizable(false);
         stage.getIcons().add(new Image("meduse1.png"));
         stage.setScene(scene);
         stage.show();

@@ -7,13 +7,18 @@ import java.util.ArrayList;
 
 public abstract class GameObject {
 
-    double x, y, vx, vy, ax, ay, w, h;
-    double WIDTH, HEIGHT;
+    double x, y;
+    double vx=0, vy=0, ax=0, ay=0;
+    double width, height;
     Color color;
+    protected final Partie partie;
 
-    GameObject(double w, double h){
-        WIDTH = w;
-        HEIGHT = h;
+    GameObject(double x, double y, double width, double height, Partie partie) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.partie = partie;
     }
 
     public void update(double deltaTemps, ArrayList<GameObject> gameObjects) {
@@ -32,16 +37,14 @@ public abstract class GameObject {
         return y;
     }
     public double getBas() {
-        return y + h;
+        return y + height;
     }
     public double getGauche() {
         return x;
     }
     public double getDroite() {
-        return x + w;
+        return x + width;
     }
 
     public abstract void draw(GraphicsContext context, long now);
-
-
 }
