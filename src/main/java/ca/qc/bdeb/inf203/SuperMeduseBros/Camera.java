@@ -1,5 +1,7 @@
 package ca.qc.bdeb.inf203.SuperMeduseBros;
 
+import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Meduse;
+
 public class Camera {
 
     private double x = 0;
@@ -20,6 +22,14 @@ public class Camera {
         return yMonde - y;
     }
 
+    public double getHeight() {
+        return partie.getGameHeight();
+    }
+
+    public double getWidth() {
+        return partie.getGameWidth();
+    }
+
     public void setX(double x) {
         this.x = x;
     }
@@ -38,6 +48,7 @@ public class Camera {
 
     public void update(double deltaTemps) {
         final double accelerationY = -2; //- en y = la camera monte = le reste va vers le bas
+        final double cameraFollowMedusaHeightPercent = 0.75; // % de la hauteur à laquelle la camera va suivre la méduse
 
         // Calcul de la vitesse en y
         velocityY += accelerationY * deltaTemps;
@@ -45,20 +56,34 @@ public class Camera {
         // Calcul de la nouvelle position en y
         y += velocityY * deltaTemps;
 
-        //prendre la meduse de la partie
+        //prendre la méduse de la partie
         Meduse meduse = partie.getMeduse();
 
-        //si le haut de la meduse est plus haut que 75% de la hauteur de la camera
-        //on place la camera en haut de la meduse
-        //0.25 = 25% car y = 0 est en haut de l'écran
-        //donc y(a partir du haut) + 0.25 * (hauteur de l'écran)
-        //est la meme chose que dire y(a partir du bas) - 0.75 * (hauteur de l'écran)
-        if (meduse.getHaut() < y + partie.getGameHeight() * 0.25) {
-            y = meduse.getHaut() - partie.getGameHeight() * 0.25;
+        //si le haut de la méduse est plus haut que 75% de la hauteur de la camera
+        //on place la camera en haut de la méduse
+        double heightOfFollowPoint = getHeight() * (1-cameraFollowMedusaHeightPercent);
+        if (meduse.getHaut() < y + heightOfFollowPoint) {
+            y = meduse.getHaut() - heightOfFollowPoint;
         }
-        //si la meduse est completement en dessous de la camera
-        else if (calculerEcranY(meduse.getHaut()) > partie.getGameHeight()) {
+        //si la méduse est complètement en dessous de la camera
+        else if (meduse.getYScreen() > getHeight()) {
             partie.defaite();
         }
+    }
+
+    public double getBottom() {
+        return y + getHeight();
+    }
+
+    public double getTop() {
+        return y;
+    }
+
+    public double getLeft() {
+        return x;
+    }
+
+    public double getRight() {
+        return x + getWidth();
     }
 }

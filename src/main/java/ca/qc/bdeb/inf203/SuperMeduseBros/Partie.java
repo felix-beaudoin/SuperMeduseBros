@@ -1,19 +1,24 @@
 package ca.qc.bdeb.inf203.SuperMeduseBros;
 
+import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.GameObject;
+import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Meduse;
+import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Platforms.Plateforme;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Partie {
 
-    private double gameWidth, gameHeight;
+    private final double gameWidth, gameHeight;
     private Meduse meduse;
     private Camera camera;
+    private PlateformeManager platManager;
 
-    ArrayList<GameObject> gameObjects = new ArrayList<>();
-    Partie(double gameWidth, double gameHeight){
+    Set<GameObject> gameObjects = new HashSet<>();
+
+    public Partie(double gameWidth, double gameHeight){
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
 
@@ -22,29 +27,27 @@ public class Partie {
     }
 
     private void start(){
-        //TODO: peut etre que on ne veut pas recreer une nouvelle camera et meduse quand on restart?
-        //TODO: niveau Memoire et Vitesse ca change rien pcq le GC va enlever les anciens gameObjects
-        //TODO: du heap memory vu quils seront dereferencé.
-        //TODO: BREF, c vrm pas necessaire mais pt c plus clean (jsp frl c plus une question quune affirmation lol)
-
         //create the camera
         camera = new Camera(this);
 
-        //this section is a test
-        meduse = new Meduse(gameWidth/2, Meduse.HEIGHT, this);
-        gameObjects.add(meduse);
+        //create the plateformes
+        platManager = new PlateformeManager(this);
+        platManager.start();
 
-        //add platforms at random position between 0 and gameWidth and 0 and gameHeight (10 platforms)
-        for (int i = 0; i < 10; i++) {
-            double platX = Math.random() * gameWidth;
-            double platY = Math.random() * gameHeight;
-            Plateforme p = new Plateforme(platX, platY, this);
-            gameObjects.add(p);
-        }
+        //create the méduse
+        Plateforme spawnPlat = platManager.getPlateformes().get((int)Math.ceil(platManager.getPlateformes().size()/2d - 1));
+        meduse = new Meduse(
+                spawnPlat.getGauche() + spawnPlat.getWidth()/2 - Meduse.WIDTH/2,
+                spawnPlat.getHaut() - Meduse.HEIGHT - 35, // -35 pour éviter que la méduse ne sorte de la plateforme
+                this
+        );
+
+        //add the gameObjects
+        gameObjects.add(meduse);
     }
 
     private void restart(){
-        //tmp implentation
+        //tmp implémentation
         System.out.println("restart");
         gameObjects.clear();
         start();
@@ -55,8 +58,12 @@ public class Partie {
         //update camera
         camera.update(deltaTemps);
 
+        //update plateformes
+        platManager.updateManager();
+
+        //update gameObjects
         for (GameObject gameObject : gameObjects) {
-            gameObject.update(deltaTemps, gameObjects);
+            gameObject.update(deltaTemps);
         }
     }
 
@@ -87,11 +94,23 @@ public class Partie {
     }
 
     /**
-     * Cette methode est appele par la camera quand la meduse est en dessous de la camera (on a donc perdu)
+     * Cette méthode est appelée par la camera quand la méduse est en dessous de la camera (on a donc perdu)
      */
     public void defaite() {
-        //tmp implentation
+        //tmp implémentation
         System.out.println("perdu");
         restart();
+    }
+
+    public void removeGameObject(GameObject gameObject){
+        gameObjects.remove(gameObject);
+    }
+
+    public void addGameObject(GameObject gameObject){
+        gameObjects.add(gameObject);
+    }
+
+    public PlateformeManager getPlatManager() {
+        return platManager;
     }
 }
