@@ -2,11 +2,16 @@ package ca.qc.bdeb.inf203.SuperMeduseBros;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -22,6 +27,14 @@ public class Main extends Application {
         var root = new StackPane();
         Scene scene = new Scene(root);
 
+        Text score = new Text("0px");
+        score.setFill(Color.WHITE);
+        score.setFont(Font.font(35));
+
+        VBox scoreCol = new VBox();
+        scoreCol.getChildren().add(score);
+        scoreCol.setAlignment(Pos.TOP_CENTER);
+
         Canvas canvas = new Canvas(w, h);
         GraphicsContext context = canvas.getGraphicsContext2D();
 
@@ -36,6 +49,7 @@ public class Main extends Application {
                 partie.update(deltaTemps);
                 partie.draw(context, now - startTime);
                 lastTime = now;
+                score.setText((int) (java.lang.Math.floor(partie.getCamera().getTop() * -1)) + "px");
             }
         };
 
@@ -44,7 +58,7 @@ public class Main extends Application {
 
         timer.start();
 
-        root.getChildren().add(canvas);
+        root.getChildren().addAll(canvas, scoreCol);
         stage.setTitle("Super Meduse Bros");
         stage.setResizable(false);
         stage.getIcons().add(new Image("meduse1.png"));

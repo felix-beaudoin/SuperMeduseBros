@@ -58,13 +58,13 @@ public class Partie {
         //update camera
         camera.update(deltaTemps);
 
-        //update plateformes
-        platManager.updateManager();
 
         //update gameObjects
         for (GameObject gameObject : gameObjects) {
             gameObject.update(deltaTemps);
         }
+
+
     }
 
     public void draw(GraphicsContext context, long now){

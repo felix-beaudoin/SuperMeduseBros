@@ -20,7 +20,7 @@ public class Meduse extends GameObject {
     //constants
     public static final double WIDTH = 50;
     public static final double HEIGHT = 50;
-    private final boolean canJumpWhileJumping = true; //si la méduse peut sauter quand elle est en train de monter
+    private final boolean canJumpWhileJumping = false; //si la méduse peut sauter quand elle est en train de monter
 
     public Meduse(double x, double y, Partie partie) {
         super(x,y, WIDTH, HEIGHT, partie);

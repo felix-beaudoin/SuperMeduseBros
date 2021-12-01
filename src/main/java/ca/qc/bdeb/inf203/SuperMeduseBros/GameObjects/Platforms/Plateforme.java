@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 public class Plateforme extends GameObject {
 
     //constants
-    private static final double HEIGHT = 20;
+    private static final double HEIGHT = 10;
     private static final double MIN_WIDTH = 80, MAX_WIDTH = 170;
     private static final Color defaultColor = Color.rgb(230, 134, 58);
 
