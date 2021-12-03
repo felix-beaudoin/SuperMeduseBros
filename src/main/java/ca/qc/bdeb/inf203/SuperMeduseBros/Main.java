@@ -181,6 +181,13 @@ public class Main extends Application {
         HBox hboxers = new HBox(yo);
 
         Scene scoreScene = new Scene(hboxers);
+
+        //si escape alors exit
+        scoreScene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ESCAPE){
+                displayMenu(stage);
+            }
+        });
         
         stage.setScene(scoreScene);
     }
