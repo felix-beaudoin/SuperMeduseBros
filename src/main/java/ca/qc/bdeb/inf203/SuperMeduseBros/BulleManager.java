@@ -53,7 +53,7 @@ public class BulleManager {
         }
         while (bulles.getFirst().getHaut() > camera.getBottom() + Meduse.HEIGHT) {
             Bulle bulleToRemove = bulles.removeFirst();
-            partie.removeGameObject(bulleToRemove);
+            partie.removeBulle(bulleToRemove);
         }
     }
 }

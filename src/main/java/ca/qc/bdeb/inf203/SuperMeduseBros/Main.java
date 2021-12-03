@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -15,25 +16,52 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Timer;
+
 
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
+    private AnimationTimer timer;
+    private double w = 350;
+    private double h = 480;
+    private boolean isLostDisplayed;
+
     @Override
     public void start(Stage stage) {
-        double w = 350;
-        double h = 480;
+
 
         var menuRoot = new VBox();
+
         Button startGameButton = new Button("Jouer!");
+        menuRoot.getChildren().add(startGameButton);
+
+
+        Scene menuScene = new Scene(menuRoot);
+
         startGameButton.setOnAction(event -> {
-            startGame();
+            startGame(stage);
         });
 
+
+        stage.setTitle("Super Meduse Bros");
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("meduse1.png"));
+        stage.setScene(menuScene);
+        stage.show();
+    }
+
+    private void startGame(Stage stage) {
+        isLostDisplayed = false;
         var gameRoot = new StackPane();
-        Scene scene = new Scene(gameRoot);
+        Scene gameScene = new Scene(gameRoot);
+        Partie partie = new Partie(w, h);
+
+        //canvas
+        Canvas canvas = new Canvas(w, h);
+        GraphicsContext context = canvas.getGraphicsContext2D();
 
         //score
         Text score = new Text("0px");
@@ -44,10 +72,6 @@ public class Main extends Application {
         VBox scoreCol = new VBox();
         scoreCol.getChildren().add(score);
         scoreCol.setAlignment(Pos.TOP_CENTER);
-
-        //canvas
-        Canvas canvas = new Canvas(w, h);
-        GraphicsContext context = canvas.getGraphicsContext2D();
 
         //debug info
         Text position = new Text();
@@ -61,13 +85,10 @@ public class Main extends Application {
 
         VBox debugInfo = new VBox(position, vitesse, acceleration, standingOnPlat);
 
-
-        Partie partie = new Partie(w, h);
-
-
-        var timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
             long lastTime = System.nanoTime();
             final long startTime = lastTime;
+            double timeOfLost;
 
             @Override
             public void handle(long now) {
@@ -89,27 +110,53 @@ public class Main extends Application {
                 standingOnPlat.setText(partie.getStandingOnPlateformInfo());
 
 
+                //gameLost
+
+                if (partie.isGameLost()) {
+                    if (!isLostDisplayed) {
+                        displayLost(gameRoot);
+                        timeOfLost = now * 1e-9;
+                    }
+
+                    if (now * 1e-9 >= 3 + timeOfLost){
+                        displayScore(true, stage);
+                    }
+
+
+                }
 
                 lastTime = now;
             }
         };
 
-
-
-        scene.setOnKeyPressed(event -> Input.setKeyPressed(event.getCode(), true));
-        scene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
+        gameScene.setOnKeyPressed(event -> Input.setKeyPressed(event.getCode(), true));
+        gameScene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
 
         timer.start();
-
         gameRoot.getChildren().addAll(canvas, scoreCol, debugInfo);
-        stage.setTitle("Super Meduse Bros");
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("meduse1.png"));
-        stage.setScene(scene);
-        stage.show();
+        stage.setScene(gameScene);
     }
 
-    private void startGame(){
-
+    private void displayLost(StackPane gameRoot) {
+        if (!isLostDisplayed) {
+            Text gameOver = new Text("Partie Terminée");
+            gameOver.setFill(Color.RED);
+            gameOver.setFont(Font.font(35));
+            gameRoot.getChildren().add(gameOver);
+            System.out.println("lost displayed");
+        }
+        isLostDisplayed = true;
     }
+
+    public void displayScore(Boolean fromGame, Stage stage){
+        System.out.println("yoooo");
+        Text yo = new Text("deez nuts");
+
+        HBox sbeve = new HBox(yo);
+
+        Scene scoreScene = new Scene(sbeve);
+        
+        stage.setScene(scoreScene);
+    }
+
 }

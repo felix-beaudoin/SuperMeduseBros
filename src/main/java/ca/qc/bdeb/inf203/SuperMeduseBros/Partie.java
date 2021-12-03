@@ -24,6 +24,7 @@ public class Partie {
     private String vitesseInfo;
     private String accelerationInfo;
     private String standingOnPlateformInfo;
+    private boolean isGameLost = false;
 
     Set<GameObject> gameObjects = new HashSet<>();
 
@@ -150,10 +151,11 @@ public class Partie {
      * Cette méthode est appelée par la camera quand la méduse est en dessous de la camera (on a donc perdu)
      */
     public void defaite() {
-        //tmp implémentation
-        System.out.println("perdu");
-        restart();
+        isGameLost = true;
     }
+
+
+
 
     public void removeGameObject(GameObject gameObject) {
         gameObjects.remove(gameObject);
@@ -165,6 +167,14 @@ public class Partie {
 
     public void addBulle(Bulle bulle) {
         bulles.add(bulle);
+    }
+
+    public boolean isGameLost() {
+        return isGameLost;
+    }
+
+    public void removeBulle(Bulle bulle){
+        bulles.remove(bulle);
     }
 
     public PlateformeManager getPlatManager() {
