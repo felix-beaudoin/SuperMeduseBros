@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="">
+    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="finition des bulles + debug info">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" afterDir="false" />
     </list>
     <list id="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" name="Changes by Felix" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638500378249</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="finition des bulles + debug info">
+      <created>1638549085086</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1638549085086</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,7 +258,8 @@
     <MESSAGE value="added some class file I forgot to push :)" />
     <MESSAGE value="update plateformes manager" />
     <MESSAGE value="stuff and shi" />
-    <option name="LAST_COMMIT_MESSAGE" value="stuff and shi" />
+    <MESSAGE value="finition des bulles + debug info" />
+    <option name="LAST_COMMIT_MESSAGE" value="finition des bulles + debug info" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

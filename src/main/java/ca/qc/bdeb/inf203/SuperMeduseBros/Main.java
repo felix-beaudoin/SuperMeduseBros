@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -24,8 +25,15 @@ public class Main extends Application {
     public void start(Stage stage) {
         double w = 350;
         double h = 480;
-        var root = new StackPane();
-        Scene scene = new Scene(root);
+
+        var menuRoot = new VBox();
+        Button startGameButton = new Button("Jouer!");
+        startGameButton.setOnAction(event -> {
+            startGame();
+        });
+
+        var gameRoot = new StackPane();
+        Scene scene = new Scene(gameRoot);
 
         //score
         Text score = new Text("0px");
@@ -86,16 +94,22 @@ public class Main extends Application {
             }
         };
 
+
+
         scene.setOnKeyPressed(event -> Input.setKeyPressed(event.getCode(), true));
         scene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
 
         timer.start();
 
-        root.getChildren().addAll(canvas, scoreCol, debugInfo);
+        gameRoot.getChildren().addAll(canvas, scoreCol, debugInfo);
         stage.setTitle("Super Meduse Bros");
         stage.setResizable(false);
         stage.getIcons().add(new Image("meduse1.png"));
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void startGame(){
+
     }
 }
