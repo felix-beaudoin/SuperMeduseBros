@@ -6,6 +6,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+import java.util.function.Function;
 
 import static ca.qc.bdeb.inf203.SuperMeduseBros.Input.isKeyPressed;
 
@@ -111,19 +116,21 @@ public class Meduse extends GameObject {
         }
 
         //determiner si la meduse est sur une plateforme
-        for (Plateforme plateforme : partie.getPlatManager().getPlateformes()) {
+        for (Plateforme plat : partie.getPlatManager().getPlateformes()) {
             //?x = v1 * t + (1/2) * a * t²
             double newY = y + vy * partie.getDeltaTime() + 0.5 * ay * partie.getDeltaTime() * partie.getDeltaTime();
             double newX = x + vx * partie.getDeltaTime() + 0.5 * ax * partie.getDeltaTime() * partie.getDeltaTime();
 
+            //https://stackoverflow.com/a/32088787
+            //TODO: collision avec les plateformes
 
 
-            if (plateforme.getHaut() <= this.getBas() && plateforme.getBas() > this.getBas() &&
-                    plateforme.getDroite() >= this.getGauche() && plateforme.getGauche() <= this.getDroite()
+            if (plat.getHaut() <= this.getBas() && plat.getBas() > this.getBas() &&
+                    plat.getDroite() >= this.getGauche() && plat.getGauche() <= this.getDroite()
             ) {
-                y = plateforme.getHaut() - height;
-                plateforme.landOn();
-                return plateforme;
+                y = plat.getHaut() - height;
+                plat.landOn();
+                return plat;
             }
         }
         return null;

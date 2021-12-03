@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="">
+    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="Main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$LastDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$LastDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" afterDir="false" />
     </list>
-    <list id="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" name="Changes by Felix" comment="">
+    <list id="ae201c04-b3b9-4af5-8eea-e7526eaea54b" name="Changes by Felix" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,26 +81,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="10" end1="13" start2="11" end2="13" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="22" end1="22" start2="22" end2="23" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="33" end1="53" start2="34" end2="35" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="55" end1="55" start2="37" end2="84" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="57" end1="58" start2="86" end2="87" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="103" end1="104" start2="132" end2="132" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="113" end1="114" start2="141" end2="141" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="123" end1="125" start2="150" end2="150" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="126" end1="127" start2="151" end2="151" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="136" end1="142" start2="160" end2="160" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="160" end1="161" start2="178" end2="179" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="162" end1="163" start2="180" end2="181" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="164" end1="165" start2="182" end2="183" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="20QeNn73Lrt2ykifyjuuGr8Q1JC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -287,7 +269,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638559042468</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="bla bla">
+      <created>1638559564984</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1638559564984</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Main">
+      <created>1638559776576</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1638559776576</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +310,8 @@
     <MESSAGE value="last push avant que je fuck up de quoi dans le main" />
     <MESSAGE value="menu + score" />
     <MESSAGE value="bla bla" />
-    <option name="LAST_COMMIT_MESSAGE" value="bla bla" />
+    <MESSAGE value="Main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
