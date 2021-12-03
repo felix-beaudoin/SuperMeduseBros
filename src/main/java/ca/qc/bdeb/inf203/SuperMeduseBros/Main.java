@@ -102,7 +102,6 @@ public class Main extends Application {
                 //score
                 score.setText((int) (java.lang.Math.floor(partie.getCamera().getTop() * -1)) + "px");
 
-
                 //debug info
                 position.setText(partie.getPositionInfo());
                 vitesse.setText(partie.getVitesseInfo());
@@ -111,7 +110,6 @@ public class Main extends Application {
 
 
                 //gameLost
-
                 if (partie.isGameLost()) {
                     if (!isLostDisplayed) {
                         displayLost(gameRoot);
@@ -121,10 +119,7 @@ public class Main extends Application {
                     if (now * 1e-9 >= 3 + timeOfLost){
                         displayScore(true, stage);
                     }
-
-
                 }
-
                 lastTime = now;
             }
         };
@@ -134,12 +129,6 @@ public class Main extends Application {
 
         timer.start();
 
-        //debugging shit
-        /*canvas=new Canvas(w,h);
-        GraphicsContext context2=canvas.getGraphicsContext2D();
-        context2.setFill(Color.BLACK);
-        context2.fillRect(0,0,w,h);
-        gameRoot.setAlignment(Pos.);*/
         gameRoot.getChildren().addAll(canvas, scoreCol, debugInfo);
 
         stage.setScene(gameScene);

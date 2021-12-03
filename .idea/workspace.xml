@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="menu + score">
+    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Bulle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Meduse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/GameObjects/Platforms/Plateforme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" afterDir="false" />
     </list>
     <list id="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" name="Changes by Felix" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
@@ -100,11 +89,14 @@
         <range start1="33" end1="53" start2="34" end2="35" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
         <range start1="55" end1="55" start2="37" end2="84" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
         <range start1="57" end1="58" start2="86" end2="87" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="135" end1="135" start2="164" end2="171" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="136" end1="136" start2="172" end2="173" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
-        <range start1="152" end1="153" start2="189" end2="190" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="154" end1="155" start2="191" end2="192" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
-        <range start1="156" end1="157" start2="193" end2="194" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
+        <range start1="103" end1="104" start2="132" end2="132" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
+        <range start1="113" end1="114" start2="141" end2="141" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
+        <range start1="123" end1="125" start2="150" end2="150" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
+        <range start1="126" end1="127" start2="151" end2="151" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
+        <range start1="136" end1="142" start2="160" end2="160" changelist="f7496699-7cba-49e0-bc6a-25c16b8069ce" />
+        <range start1="160" end1="161" start2="178" end2="179" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
+        <range start1="162" end1="163" start2="180" end2="181" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
+        <range start1="164" end1="165" start2="182" end2="183" changelist="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" />
       </ranges>
     </file>
   </component>
@@ -288,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638553156901</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="bla bla">
+      <created>1638559042468</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1638559042468</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +313,8 @@
     <MESSAGE value="finition des bulles + debug info" />
     <MESSAGE value="last push avant que je fuck up de quoi dans le main" />
     <MESSAGE value="menu + score" />
-    <option name="LAST_COMMIT_MESSAGE" value="menu + score" />
+    <MESSAGE value="bla bla" />
+    <option name="LAST_COMMIT_MESSAGE" value="bla bla" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
