@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="last push avant que je fuck up de quoi dans le main">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/BulleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/qc/bdeb/inf203/SuperMeduseBros/Partie.java" afterDir="false" />
-    </list>
+    <list default="true" id="f7496699-7cba-49e0-bc6a-25c16b8069ce" name="Changes" comment="menu + score" />
     <list id="258b7cc3-abfe-4c9a-b3cb-db5d05a06544" name="Changes by Felix" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638549623272</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="menu + score">
+      <created>1638553156901</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1638553156901</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -282,7 +277,8 @@
     <MESSAGE value="stuff and shi" />
     <MESSAGE value="finition des bulles + debug info" />
     <MESSAGE value="last push avant que je fuck up de quoi dans le main" />
-    <option name="LAST_COMMIT_MESSAGE" value="last push avant que je fuck up de quoi dans le main" />
+    <MESSAGE value="menu + score" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu + score" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
