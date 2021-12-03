@@ -25,6 +25,7 @@ public class Partie {
     private String accelerationInfo;
     private String standingOnPlateformInfo;
     private boolean isGameLost = false;
+    protected double deltaTime;
 
     Set<GameObject> gameObjects = new HashSet<>();
 
@@ -72,6 +73,7 @@ public class Partie {
     }
 
     public void update(double deltaTemps, long now, long lastTime) {
+        deltaTime = deltaTemps;
 
         //update camera
         camera.update(deltaTemps);
@@ -103,7 +105,7 @@ public class Partie {
             positionInfo = ("Position = (" + (int) getMeduse().getX() + ", " + (int) getMeduse().getY() + ")");
             vitesseInfo = ("Vitesse = (" + (int) getMeduse().getVx() + ", " + (int) getMeduse().getVy() + ")");
             accelerationInfo = ("Acceleration = (" + (int) getMeduse().getAx() + ", " + (int) getMeduse().getAy() + ")");
-            if (getMeduse().getStandingPlateform() == null) {
+            if (getMeduse().getStandingPlatform() == null) {
                 standingOnPlateformInfo = ("Touche le sol? non");
             } else {
                 standingOnPlateformInfo = ("Touche le sol? oui");
@@ -199,5 +201,9 @@ public class Partie {
 
     public String getStandingOnPlateformInfo() {
         return standingOnPlateformInfo;
+    }
+
+    public double getDeltaTime() {
+        return deltaTime;
     }
 }

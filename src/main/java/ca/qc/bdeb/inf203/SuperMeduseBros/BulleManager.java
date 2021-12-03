@@ -1,10 +1,6 @@
 package ca.qc.bdeb.inf203.SuperMeduseBros;
 
-import ca.qc.bdeb.inf203.SuperMeduseBros.Camera;
 import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Bulle;
-import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Meduse;
-import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Platforms.Plateforme;
-import ca.qc.bdeb.inf203.SuperMeduseBros.Partie;
 
 import java.util.LinkedList;
 
@@ -25,21 +21,24 @@ public class BulleManager {
 
     public void spawnBulles() {
         for (int i = 0; i < 3; i++) {
-            addBulles(createBulle());
+            addBulles(createGroupBulle());
         }
     }
 
-    private void addBulles(Bulle[] bullesGroupe) {
-        for (int i = 0; i < bullesGroupe.length; i++) {
-            bulles.add(bullesGroupe[i]);                             //on ajoute la bulle a la LinkedList (ordered list)
-            partie.addBulle(bullesGroupe[i]);                     //on ajoute la bulle a la partie (unordered list)
+    private void addBulles(Bulle... bullesGroupe) {
+        for (Bulle bulle : bullesGroupe) {
+            bulles.add(bulle);                             //on ajoute la bulle a la LinkedList (ordered list)
+            partie.addBulle(bulle);                     //on ajoute la bulle a la partie (unordered list)
         }
     }
 
-    private Bulle[] createBulle() {
+    private Bulle[] createGroupBulle() {
+
+        final double distanceFromSides = 30;
+
         Bulle[] bulles = new Bulle[5];
-        double x = Math.random() * (partie.getGameWidth() - (10 + 40));
-        System.out.println("x: " + x);
+        double x = camera.getLeft() + distanceFromSides + Math.random() * (camera.getWidth() - distanceFromSides);
+        //System.out.println("x: " + x);
         for (int i = 0; i < 5; i++) {
             bulles[i] = new Bulle(x, partie);
         }
@@ -47,13 +46,17 @@ public class BulleManager {
     }
 
     public void updateManager(long now) {
+        //on verifie sil y a des bulles a ajouter
         if ((now * 1e-9) - lastBubbleWave >= 3){
             spawnBulles();
             lastBubbleWave = now * 1e-9;
         }
-        while (bulles.getFirst().getHaut() > camera.getBottom() + Meduse.HEIGHT) {
+
+        //on verifie sil y a des bulles a supprimer
+        while (!bulles.isEmpty() && bulles.getFirst().getBas() < camera.getTop()) {
             Bulle bulleToRemove = bulles.removeFirst();
             partie.removeBulle(bulleToRemove);
+            System.out.println("Bulle removed. Bulle left: " + bulles.size()); //TODO: debug
         }
     }
 }

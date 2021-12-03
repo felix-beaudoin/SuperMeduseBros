@@ -133,7 +133,15 @@ public class Main extends Application {
         gameScene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
 
         timer.start();
+
+        //debugging shit
+        /*canvas=new Canvas(w,h);
+        GraphicsContext context2=canvas.getGraphicsContext2D();
+        context2.setFill(Color.BLACK);
+        context2.fillRect(0,0,w,h);
+        gameRoot.setAlignment(Pos.);*/
         gameRoot.getChildren().addAll(canvas, scoreCol, debugInfo);
+
         stage.setScene(gameScene);
     }
 

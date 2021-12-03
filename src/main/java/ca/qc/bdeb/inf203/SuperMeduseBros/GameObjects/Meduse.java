@@ -23,7 +23,7 @@ public class Meduse extends GameObject {
     public static final double WIDTH = 50;
     public static final double HEIGHT = 50;
     private final boolean canJumpWhileJumping = false; //si la méduse peut sauter quand elle est en train de monter
-    private Plateforme standingPlateform;
+    private Plateforme standingPlatform;
 
     public Meduse(double x, double y, Partie partie) {
         super(x, y, WIDTH, HEIGHT, partie);
@@ -39,8 +39,8 @@ public class Meduse extends GameObject {
         }
     }
 
-    public Plateforme getStandingPlateform() {
-        return standingPlateform;
+    public Plateforme getStandingPlatform() {
+        return standingPlatform;
     }
 
     @Override
@@ -50,16 +50,15 @@ public class Meduse extends GameObject {
         final double GRAVITY = 1200;
         final double JUMP = -600;
         final double REBOUND_PERCENT_SPEED = 0.5;
-        final double COEFFICIENT_FROTTEMENT_PLATFORM = 0.75;
-        final double COEFFICIENT_FROTTEMENT_AIR = 0.2;
-        final double MINIMUM_SPEED_FROTTEMENT = 1;
+        final double COEFFICIENT_FROTTEMENT_PLATFORM = 0.8;
+        final double COEFFICIENT_FROTTEMENT_AIR = 0.5;
 
         //TODO: on pourrait faire que certains types de plateformes aient un coefficient de frottement différent
 
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
         boolean jump = (isKeyPressed(KeyCode.SPACE) || isKeyPressed(KeyCode.UP));
-        standingPlateform = isOnPlatform();
+        standingPlatform = searchStandingPlatform();
 
         /* Rebondir sur les murs */
         if (getGauche() <= partie.getCamera().getX()) {
@@ -76,26 +75,23 @@ public class Meduse extends GameObject {
         } else if (!right && left) {
             ax = -ACCELERATION_X;
         } else {
-            double coefficientFrottement = (standingPlateform != null) ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
+            double coefficientFrottement = (standingPlatform != null) ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
+            int signeVitesse = (vx > 0) ? 1 : -1;
+            ax = signeVitesse * -(coefficientFrottement * GRAVITY); //F=ma(x) et F=uF(N) et F(N)=-a(y)*m => a(x) = u*(m/m)*-a(y) = -(u * a(y))
+            double futureVX = vx + ax * deltaTemps;
+            int nouveauSigneVitesse = (futureVX > 0) ? 1 : -1;
 
-            if (Math.abs(vx) > MINIMUM_SPEED_FROTTEMENT) {
-                int signeVitesse = (vx > 0) ? 1 : -1;
-                ax = signeVitesse * -(coefficientFrottement * GRAVITY); //F=ma(x) et F=uF(N) et F(N)=-a(y)*m => a(x) = u*(m/m)*-a(y) = -(u * a(y))
-                double futureVX = vx + ax * deltaTemps;
-                int nouveauSigneVitesse = (futureVX > 0) ? 1 : -1;
-                if (nouveauSigneVitesse != signeVitesse) {
-                    ax = vx = 0;
-                }
-            } else {
-                ax = 0;
+            // on est si lent quon devient immobile au lieu daller en direction contraire
+            if (nouveauSigneVitesse != signeVitesse) {
+                ax = vx = 0;
             }
         }
 
         /* Saut/plateforme */
-        if (standingPlateform != null) {// si collision avec plateforme
+        if (standingPlatform != null) {// si collision avec plateforme
             if (jump) {
                 vy = JUMP; // si on saute, appliquer la vitesse vers le haut
-                standingPlateform.jumpOn();
+                standingPlatform.jumpOn();
             } else {
                 ay = 0; // si non, il faut rester immobile, sur la plateforme. aka ne pas tomber
                 if (vy > 0) { // si vitesse est vers le bas, on la reinitialise a 0.
@@ -109,13 +105,19 @@ public class Meduse extends GameObject {
         super.update(deltaTemps);
     }
 
-    private Plateforme isOnPlatform() {
-        //System.out.println("--> " + vy);
+    private Plateforme searchStandingPlatform() {
         if (vy < 0 && !canJumpWhileJumping) { // on ne peut sauter que si on est immobile en y
             return null;
         }
 
+        //determiner si la meduse est sur une plateforme
         for (Plateforme plateforme : partie.getPlatManager().getPlateformes()) {
+            //?x = v1 * t + (1/2) * a * t²
+            double newY = y + vy * partie.getDeltaTime() + 0.5 * ay * partie.getDeltaTime() * partie.getDeltaTime();
+            double newX = x + vx * partie.getDeltaTime() + 0.5 * ax * partie.getDeltaTime() * partie.getDeltaTime();
+
+
+
             if (plateforme.getHaut() <= this.getBas() && plateforme.getBas() > this.getBas() &&
                     plateforme.getDroite() >= this.getGauche() && plateforme.getGauche() <= this.getDroite()
             ) {
