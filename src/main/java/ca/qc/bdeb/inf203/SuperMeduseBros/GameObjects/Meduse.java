@@ -138,34 +138,36 @@ public class Meduse extends GameObject {
 
     @Override
     public void draw(GraphicsContext context, long now) {
-        /* Dessiner le bon frame */
-        boolean left = isKeyPressed(KeyCode.LEFT);
-        boolean right = isKeyPressed(KeyCode.RIGHT);
+        if (!partie.isGameLost()) {// parfois on peut rebondir et continuer a jouer, bref juste s'assurer à 100% de pas voir la meduse
+            /* Dessiner le bon frame */
+            boolean left = isKeyPressed(KeyCode.LEFT);
+            boolean right = isKeyPressed(KeyCode.RIGHT);
 
-        if (left && !right) { // si on appuie sur la gauche
-            ld = LastDirection.LEFT;
-        } else if (right && !left) { // si on appuie sur la droite
-            ld = LastDirection.RIGHT;
-        } else { // right et left sont appuyés OU ni right ni left sont appuyés
-            if (vx > 0) ld = LastDirection.RIGHT;
-            else if (vx < 0) ld = LastDirection.LEFT;
-        }
+            if (left && !right) { // si on appuie sur la gauche
+                ld = LastDirection.LEFT;
+            } else if (right && !left) { // si on appuie sur la droite
+                ld = LastDirection.RIGHT;
+            } else { // right et left sont appuyés OU ni right ni left sont appuyés
+                if (vx > 0) ld = LastDirection.RIGHT;
+                else if (vx < 0) ld = LastDirection.LEFT;
+            }
 
-        //prendre la bonne liste de frame
-        Image[] listeFrames = switch (ld) {
-            case LEFT -> framesG;
-            case RIGHT -> framesD;
-        };
+            //prendre la bonne liste de frame
+            Image[] listeFrames = switch (ld) {
+                case LEFT -> framesG;
+                case RIGHT -> framesD;
+            };
 
-        // prendre le bon sprite
-        int frame = (int) Math.floor(now * 8 * 1e-9);
+            // prendre le bon sprite
+            int frame = (int) Math.floor(now * 8 * 1e-9);
 
-        //dessiner le sprite
-        context.drawImage(listeFrames[frame % listeFrames.length], xScreen, yScreen);
+            //dessiner le sprite
+            context.drawImage(listeFrames[frame % listeFrames.length], xScreen, yScreen);
 
-        if (partie.isDebug()) {
-            context.setFill(Color.rgb(255, 0, 0, 0.3));
-            context.fillRect(xScreen, yScreen, height, height);
+            if (partie.isDebug()) {
+                context.setFill(Color.rgb(255, 0, 0, 0.3));
+                context.fillRect(xScreen, yScreen, height, height);
+            }
         }
     }
 }

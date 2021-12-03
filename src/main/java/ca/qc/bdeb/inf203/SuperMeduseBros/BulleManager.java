@@ -56,7 +56,7 @@ public class BulleManager {
         while (!bulles.isEmpty() && bulles.getFirst().getBas() < camera.getTop()) {
             Bulle bulleToRemove = bulles.removeFirst();
             partie.removeBulle(bulleToRemove);
-            System.out.println("Bulle removed. Bulle left: " + bulles.size()); //TODO: debug
+            //System.out.println("Bulle removed. Bulle left: " + bulles.size()); //TODO: debug
         }
     }
 }

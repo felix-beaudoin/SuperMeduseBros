@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
@@ -16,7 +17,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Timer;
+import java.io.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Scanner;
 
 
 public class Main extends Application {
@@ -35,7 +40,7 @@ public class Main extends Application {
         displayMenu(stage);
     }
 
-    private void displayMenu(Stage stage){
+    private void displayMenu(Stage stage) {
         StackPane menuRoot = new StackPane();
         Scene menuScene = new Scene(menuRoot);
 
@@ -48,26 +53,27 @@ public class Main extends Application {
         context.drawImage(new Image("accueil.png"), 0, 25);
 
 
-
         //button pour jouer et afficher score
         Button startGameButton = new Button("Jouer!");
+        startGameButton.setFont(Font.font(15));
         startGameButton.setOnAction(event -> {
             startGame(stage);
         });
 
         Button showScore = new Button("Meilleurs scores");
+        showScore.setFont(Font.font(15));
         showScore.setOnAction(event -> {
-            displayScore(false, stage);
+            displayScore(false, stage, 0);
         });
 
-        VBox buttons = new VBox(startGameButton, showScore);
-        buttons.setAlignment(Pos.CENTER);
-
+        VBox buttons = new VBox(startGameButton, showScore, new Text(""));
+        buttons.setAlignment(Pos.BOTTOM_CENTER);
+        buttons.setSpacing(25);
 
 
         //si escape alors exit
         menuScene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.ESCAPE){
+            if (e.getCode() == KeyCode.ESCAPE) {
                 Platform.exit();
             }
         });
@@ -97,7 +103,7 @@ public class Main extends Application {
         score.setFill(Color.WHITE);
         score.setFont(Font.font(35));
 
-        //score alignment
+        //sick.txt alignment
         VBox scoreCol = new VBox();
         scoreCol.getChildren().add(score);
         scoreCol.setAlignment(Pos.TOP_CENTER);
@@ -128,8 +134,8 @@ public class Main extends Application {
                 partie.update(deltaTemps, now - startTime, lastTime);
                 partie.draw(context, now - startTime);
 
-                //score
-                score.setText((int) (java.lang.Math.floor(partie.getCamera().getTop() * -1)) + "px");
+                //sick.txt
+                score.setText(partie.getScore() + "px");
 
                 //debug info
                 position.setText(partie.getPositionInfo());
@@ -145,15 +151,25 @@ public class Main extends Application {
                         timeOfLost = now * 1e-9;
                     }
 
-                    if (now * 1e-9 >= 3 + timeOfLost){
-                        displayScore(true, stage);
+                    if (now * 1e-9 >= 3 + timeOfLost) {
+
+                        displayScore(true, stage, partie.getScore());
+                        timer.stop();
                     }
                 }
+
                 lastTime = now;
             }
         };
 
-        gameScene.setOnKeyPressed(event -> Input.setKeyPressed(event.getCode(), true));
+
+        gameScene.setOnKeyPressed(event -> {
+            Input.setKeyPressed(event.getCode(), true);
+            if (event.getCode() == KeyCode.ESCAPE) {
+                timer.stop();
+                displayMenu(stage);
+            }
+        });
         gameScene.setOnKeyReleased(event -> Input.setKeyPressed(event.getCode(), false));
 
         timer.start();
@@ -169,27 +185,102 @@ public class Main extends Application {
             gameOver.setFill(Color.RED);
             gameOver.setFont(Font.font(35));
             gameRoot.getChildren().add(gameOver);
-            System.out.println("lost displayed");
         }
         isLostDisplayed = true;
     }
 
-    public void displayScore(Boolean fromGame, Stage stage){
-        System.out.println("yoooo");
-        Text yo = new Text("h");
+    public void displayScore(Boolean fromGame, Stage stage, int scoreActuel) {
 
-        HBox hboxers = new HBox(yo);
+        Text titre = new Text("Meilleurs scores");
+        titre.setFont(Font.font(35));
 
-        Scene scoreScene = new Scene(hboxers);
+        LinkedList<Score> scoreTriable = new LinkedList<>();
+
+        GridPane scores = new GridPane();
+        try { // source : https://www.w3schools.com/java/java_files_read.asp
+
+            File scoreFile = new File("score.txt");
+
+            Scanner sc = new Scanner(scoreFile);
+
+            int i = 0;
+
+            while (sc.hasNextLine()) {
+
+                String[] nextLine = sc.nextLine().split(";");
+                scores.add(new Text("#" + (i + 1) + " -- " + nextLine[0] + " -- " + nextLine[1] + "px"), 0, i);
+                i++;
+                scoreTriable.add(new Score(nextLine[0], Integer.parseInt(nextLine[1])));
+            }
+
+            for (int j = 0; i < 15; i++) {
+                scores.add(new Text(""), 0, i);
+            }
+            sc.close();
+
+        } catch (Exception e) {
+            scores.add(new Text("Fichier des scores non-fonctionnel"), 0, 0);
+            System.out.println(e);
+        }
+
+
+        VBox col = new VBox(titre, scores);
+
+        if (fromGame) {
+            HBox inputfield = new HBox();
+            inputfield.setAlignment(Pos.CENTER);
+
+            Text name = new Text("Nom:");
+            TextField textField = new TextField();
+            Button save = new Button("Sauvegarder!");
+            save.setOnAction(event -> {
+
+                try {
+                    FileWriter pw = new FileWriter(new File("score.txt"));
+
+                    scoreTriable.add(new Score(textField.getText(), scoreActuel));
+
+                    sortScoreList(scoreTriable);
+
+                    for (int i = 0; i < scoreTriable.size(); i++) {
+                        pw.write(textField.getText() + ";" + scoreActuel);
+                    }
+
+
+                    pw.close();
+                } catch (IOException e) {
+                    textField.setText("Fichier pas trouvé");
+                }
+                displayMenu(stage);
+            });
+            inputfield.getChildren().addAll(name, textField, save);
+            col.getChildren().add(inputfield);
+        }
+
+
+        Button acceuil = new Button("Retourner à l'accueil");
+        acceuil.setOnAction(event -> displayMenu(stage));
+
+
+        col.getChildren().add(acceuil);
+        col.setAlignment(Pos.CENTER);
+        col.setSpacing(15);
+
+        Scene scoreScene = new Scene(col);
 
         //si escape alors exit
         scoreScene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.ESCAPE){
+            if (e.getCode() == KeyCode.ESCAPE) {
                 displayMenu(stage);
             }
         });
-        
+
         stage.setScene(scoreScene);
+    }
+
+    private void sortScoreList(LinkedList<Score> scoreNonTrie) {
+
+
     }
 
 }

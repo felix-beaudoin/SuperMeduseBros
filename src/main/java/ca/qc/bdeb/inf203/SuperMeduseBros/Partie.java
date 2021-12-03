@@ -145,6 +145,10 @@ public class Partie {
         return gameHeight;
     }
 
+    public int getScore(){
+        return (int) (java.lang.Math.floor(getCamera().getTop() * -1));
+    }
+
     public Camera getCamera() {
         return camera;
     }
