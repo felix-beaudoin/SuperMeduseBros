@@ -2,15 +2,15 @@ package ca.qc.bdeb.inf203.SuperMeduseBros;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -20,6 +20,7 @@ import java.util.Timer;
 
 
 public class Main extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -31,31 +32,59 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        displayMenu(stage);
+    }
 
-
-        var menuRoot = new VBox();
-
-        Button startGameButton = new Button("Jouer!");
-        menuRoot.getChildren().add(startGameButton);
-
-
+    private void displayMenu(Stage stage){
+        StackPane menuRoot = new StackPane();
         Scene menuScene = new Scene(menuRoot);
 
+        Canvas canvas = new Canvas(w, h);
+        GraphicsContext context = canvas.getGraphicsContext2D();
+
+        //background et image
+        context.setFill(Color.DARKBLUE);
+        context.fillRect(0, 0, w, h);
+        context.drawImage(new Image("accueil.png"), 0, 25);
+
+
+
+        //button pour jouer et afficher score
+        Button startGameButton = new Button("Jouer!");
         startGameButton.setOnAction(event -> {
             startGame(stage);
         });
 
+        Button showScore = new Button("Meilleurs scores");
+        showScore.setOnAction(event -> {
+            displayScore(false, stage);
+        });
 
-        stage.setTitle("Super Meduse Bros");
+        VBox buttons = new VBox(startGameButton, showScore);
+        buttons.setAlignment(Pos.CENTER);
+
+
+
+        //si escape alors exit
+        menuScene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ESCAPE){
+                Platform.exit();
+            }
+        });
+
+        //display les elements
+        menuRoot.getChildren().addAll(canvas, buttons);
         stage.setResizable(false);
-        stage.getIcons().add(new Image("meduse1.png"));
+        stage.setWidth(w);
+        stage.setHeight(h);
         stage.setScene(menuScene);
         stage.show();
     }
 
+
     private void startGame(Stage stage) {
         isLostDisplayed = false;
-        var gameRoot = new StackPane();
+        StackPane gameRoot = new StackPane();
         Scene gameScene = new Scene(gameRoot);
         Partie partie = new Partie(w, h);
 
@@ -147,11 +176,11 @@ public class Main extends Application {
 
     public void displayScore(Boolean fromGame, Stage stage){
         System.out.println("yoooo");
-        Text yo = new Text("deez nuts");
+        Text yo = new Text("h");
 
-        HBox sbeve = new HBox(yo);
+        HBox hboxers = new HBox(yo);
 
-        Scene scoreScene = new Scene(sbeve);
+        Scene scoreScene = new Scene(hboxers);
         
         stage.setScene(scoreScene);
     }
