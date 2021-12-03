@@ -43,12 +43,15 @@ public class Main extends Application {
         var timer = new AnimationTimer() {
             long lastTime = System.nanoTime();
             final long startTime = lastTime;
+
             @Override
             public void handle(long now) {
                 double deltaTemps = (now - lastTime) * 1e-9;
-                partie.update(deltaTemps);
+                partie.update(deltaTemps, now - startTime, lastTime);
                 partie.draw(context, now - startTime);
                 lastTime = now;
+
+
                 score.setText((int) (java.lang.Math.floor(partie.getCamera().getTop() * -1)) + "px");
             }
         };

@@ -12,6 +12,10 @@ public abstract class GameObject {
     protected Color color;
     protected final Partie partie;
 
+    public GameObject(Partie partie){
+        this.partie = partie;
+    }
+
     public GameObject(double x, double y, double width, double height, Partie partie) {
         this.x = x;
         this.y = y;
