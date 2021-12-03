@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 public abstract class GameObject {
 
     protected double x, y, xScreen, yScreen;
-    protected double vx=0, vy=0, ax=0, ay=0;
+    public double vx=0, vy=0, ax=0, ay=0; //public pour pouvoir modifier facilement dans plateforme rebondissante
     protected double width, height;
     protected Color color;
     protected final Partie partie;
