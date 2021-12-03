@@ -5,6 +5,7 @@ import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.GameObject;
 import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Meduse;
 import ca.qc.bdeb.inf203.SuperMeduseBros.GameObjects.Platforms.Plateforme;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 import java.util.HashSet;
@@ -18,13 +19,18 @@ public class Partie {
     private Camera camera;
     private PlateformeManager platManager;
     private BulleManager bulleManager;
-    private double lastBubbleWave = 0;
+    private boolean debug = false;
+    private String positionInfo;
+    private String vitesseInfo;
+    private String accelerationInfo;
+    private String standingOnPlateformInfo;
 
     Set<GameObject> gameObjects = new HashSet<>();
 
+    //on veut les bulles spawn en background, donc on peut pas juste les mettre dans le linkedlist gameObject
     LinkedList<Bulle> bulles = new LinkedList<>();
 
-    public Partie(double gameWidth, double gameHeight){
+    public Partie(double gameWidth, double gameHeight) {
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
 
@@ -32,7 +38,7 @@ public class Partie {
         start();
     }
 
-    private void start(){
+    private void start() {
         //create the camera
         camera = new Camera(this);
 
@@ -44,13 +50,12 @@ public class Partie {
         bulleManager.spawnBulles();
 
         //create the méduse
-        Plateforme spawnPlat = platManager.getPlateformes().get((int)Math.ceil(platManager.getPlateformes().size()/2d - 1));
+        Plateforme spawnPlat = platManager.getPlateformes().get((int) Math.ceil(platManager.getPlateformes().size() / 2d - 1));
         meduse = new Meduse(
-                spawnPlat.getGauche() + spawnPlat.getWidth()/2 - Meduse.WIDTH/2,
+                spawnPlat.getGauche() + spawnPlat.getWidth() / 2 - Meduse.WIDTH / 2,
                 spawnPlat.getHaut() - Meduse.HEIGHT - 35, // -35 pour éviter que la méduse ne sorte de la plateforme
                 this
         );
-
 
 
         //add the gameObjects
@@ -58,53 +63,69 @@ public class Partie {
 
     }
 
-    private void restart(){
+    private void restart() {
         //tmp implémentation
         System.out.println("restart");
         gameObjects.clear();
         start();
     }
 
-    public void update(double deltaTemps, long now, long lastTime){
-
-
+    public void update(double deltaTemps, long now, long lastTime) {
 
         //update camera
         camera.update(deltaTemps);
 
         //update managers
         platManager.updateManager();
-        bulleManager.updateManager();
+        bulleManager.updateManager(now);
 
         //update gameObjects
         for (GameObject gameObject : gameObjects) {
             gameObject.update(deltaTemps);
         }
 
-        for (Bulle bulle : bulles){
+        //update bulle
+        for (Bulle bulle : bulles) {
             bulle.update(deltaTemps);
         }
 
+        if (Input.isKeyPressed(KeyCode.T)){
+            debug = !debug;
+        }
 
-      if ((now * 1e-9) - lastBubbleWave >= 3){// si ça fait 3 secondes min qu'on a pas fait de bulle, faire des bulles
-            bulleManager.spawnBulles();
-            lastBubbleWave = now * 1e-9;
-           }
-
-
+        updateDebugInfo();
 
     }
 
-    public void draw(GraphicsContext context, long now){
+    private void updateDebugInfo(){
+        if (isDebug()) {
+            positionInfo = ("Position = (" + (int) getMeduse().getX() + ", " + (int) getMeduse().getY() + ")");
+            vitesseInfo = ("Vitesse = (" + (int) getMeduse().getVx() + ", " + (int) getMeduse().getVy() + ")");
+            accelerationInfo = ("Acceleration = (" + (int) getMeduse().getAx() + ", " + (int) getMeduse().getAy() + ")");
+            if (getMeduse().getStandingPlateform() == null) {
+                standingOnPlateformInfo = ("Touche le sol? non");
+            } else {
+                standingOnPlateformInfo = ("Touche le sol? oui");
+            }
+
+        } else {
+            positionInfo = "";
+            vitesseInfo = "";
+            accelerationInfo = "";
+            standingOnPlateformInfo = "";
+        }
+    }
+
+    public void draw(GraphicsContext context, long now) {
         context.clearRect(0, 0, gameWidth, gameHeight);
         context.setFill(Color.DARKBLUE);
         context.fillRect(0, 0, gameWidth, gameHeight);
 
-        for (Bulle bulle : bulles){
+        for (Bulle bulle : bulles) {
             bulle.draw(context, now);
         }
 
-       for (GameObject gameObject : gameObjects) {
+        for (GameObject gameObject : gameObjects) {
             gameObject.draw(context, now);
         }
     }
@@ -134,19 +155,39 @@ public class Partie {
         restart();
     }
 
-    public void removeGameObject(GameObject gameObject){
+    public void removeGameObject(GameObject gameObject) {
         gameObjects.remove(gameObject);
     }
 
-    public void addGameObject(GameObject gameObject){
+    public void addGameObject(GameObject gameObject) {
         gameObjects.add(gameObject);
     }
 
-    public void addBulle(Bulle bulle){
+    public void addBulle(Bulle bulle) {
         bulles.add(bulle);
     }
 
     public PlateformeManager getPlatManager() {
         return platManager;
+    }
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public String getPositionInfo() {
+        return positionInfo;
+    }
+
+    public String getVitesseInfo() {
+        return vitesseInfo;
+    }
+
+    public String getAccelerationInfo() {
+        return accelerationInfo;
+    }
+
+    public String getStandingOnPlateformInfo() {
+        return standingOnPlateformInfo;
     }
 }

@@ -12,7 +12,7 @@ public class Bulle extends GameObject {
         vy = -(350 + (Math.random() * 100));
         color = Color.rgb(0, 0, 255, 0.4);
         y = partie.getGameHeight() + height / 2;
-        this.x = (x + (Math.random() * 10)) - 5;
+        this.x = (x + (Math.random() * 20)) - 10;
         height = width;
     }
 

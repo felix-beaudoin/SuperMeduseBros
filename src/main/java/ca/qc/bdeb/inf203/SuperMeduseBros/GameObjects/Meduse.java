@@ -5,12 +5,14 @@ import ca.qc.bdeb.inf203.SuperMeduseBros.Partie;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import static ca.qc.bdeb.inf203.SuperMeduseBros.Input.isKeyPressed;
 
 public class Meduse extends GameObject {
     // direction enum
     enum LastDirection {LEFT, RIGHT}
+
     LastDirection ld = LastDirection.RIGHT; //default
 
     // images
@@ -21,9 +23,10 @@ public class Meduse extends GameObject {
     public static final double WIDTH = 50;
     public static final double HEIGHT = 50;
     private final boolean canJumpWhileJumping = false; //si la méduse peut sauter quand elle est en train de monter
+    private Plateforme standingPlateform;
 
     public Meduse(double x, double y, Partie partie) {
-        super(x,y, WIDTH, HEIGHT, partie);
+        super(x, y, WIDTH, HEIGHT, partie);
 
         this.framesG = new Image[6];
         for (int i = 1; i <= 6; i++) {
@@ -34,6 +37,10 @@ public class Meduse extends GameObject {
         for (int i = 1; i <= 6; i++) {
             framesD[i - 1] = new Image("meduse" + i + ".png", WIDTH, HEIGHT, false, false);
         }
+    }
+
+    public Plateforme getStandingPlateform() {
+        return standingPlateform;
     }
 
     @Override
@@ -52,7 +59,7 @@ public class Meduse extends GameObject {
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
         boolean jump = (isKeyPressed(KeyCode.SPACE) || isKeyPressed(KeyCode.UP));
-        Plateforme standingPlateform = isOnPlatform();
+        standingPlateform = isOnPlatform();
 
         /* Rebondir sur les murs */
         if (getGauche() <= partie.getCamera().getX()) {
@@ -69,9 +76,9 @@ public class Meduse extends GameObject {
         } else if (!right && left) {
             ax = -ACCELERATION_X;
         } else {
-            double coefficientFrottement = (standingPlateform!=null) ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
+            double coefficientFrottement = (standingPlateform != null) ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
 
-            if(Math.abs(vx)>MINIMUM_SPEED_FROTTEMENT) {
+            if (Math.abs(vx) > MINIMUM_SPEED_FROTTEMENT) {
                 int signeVitesse = (vx > 0) ? 1 : -1;
                 ax = signeVitesse * -(coefficientFrottement * GRAVITY); //F=ma(x) et F=uF(N) et F(N)=-a(y)*m => a(x) = u*(m/m)*-a(y) = -(u * a(y))
                 double futureVX = vx + ax * deltaTemps;
@@ -79,7 +86,7 @@ public class Meduse extends GameObject {
                 if (nouveauSigneVitesse != signeVitesse) {
                     ax = vx = 0;
                 }
-            }else {
+            } else {
                 ax = 0;
             }
         }
@@ -91,11 +98,11 @@ public class Meduse extends GameObject {
                 standingPlateform.jumpOn();
             } else {
                 ay = 0; // si non, il faut rester immobile, sur la plateforme. aka ne pas tomber
-                if (vy > 0){ // si vitesse est vers le bas, on la reinitialise a 0.
+                if (vy > 0) { // si vitesse est vers le bas, on la reinitialise a 0.
                     vy = 0;
                 }
             }
-        }else {
+        } else {
             ay = GRAVITY; // sinon, on applique la gravité
         }
 
@@ -104,7 +111,7 @@ public class Meduse extends GameObject {
 
     private Plateforme isOnPlatform() {
         //System.out.println("--> " + vy);
-        if(vy<0 && !canJumpWhileJumping) { // on ne peut sauter que si on est immobile en y
+        if (vy < 0 && !canJumpWhileJumping) { // on ne peut sauter que si on est immobile en y
             return null;
         }
 
@@ -126,12 +133,12 @@ public class Meduse extends GameObject {
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
 
-        if(left && !right){ // si on appuie sur la gauche
+        if (left && !right) { // si on appuie sur la gauche
             ld = LastDirection.LEFT;
-        } else if (right && !left){ // si on appuie sur la droite
+        } else if (right && !left) { // si on appuie sur la droite
             ld = LastDirection.RIGHT;
-        }else{ // right et left sont appuyés OU ni right ni left sont appuyés
-            if(vx > 0) ld = LastDirection.RIGHT;
+        } else { // right et left sont appuyés OU ni right ni left sont appuyés
+            if (vx > 0) ld = LastDirection.RIGHT;
             else if (vx < 0) ld = LastDirection.LEFT;
         }
 
@@ -146,5 +153,10 @@ public class Meduse extends GameObject {
 
         //dessiner le sprite
         context.drawImage(listeFrames[frame % listeFrames.length], xScreen, yScreen);
+
+        if (partie.isDebug()) {
+            context.setFill(Color.rgb(255, 0, 0, 0.3));
+            context.fillRect(xScreen, yScreen, height, height);
+        }
     }
 }

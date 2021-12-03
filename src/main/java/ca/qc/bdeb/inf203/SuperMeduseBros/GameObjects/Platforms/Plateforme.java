@@ -25,7 +25,11 @@ public class Plateforme extends GameObject {
 
     @Override
     public void draw(GraphicsContext context, long now) {
+        if (this == partie.getMeduse().getStandingPlateform() && partie.isDebug()){
+            context.setFill(Color.YELLOW);
+        } else {
         context.setFill(color);
+        }
         context.fillRect(xScreen, yScreen, width, height);
     }
 }

@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -23,22 +22,40 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        double w = 350; double h = 480;
+        double w = 350;
+        double h = 480;
         var root = new StackPane();
         Scene scene = new Scene(root);
 
+        //score
         Text score = new Text("0px");
         score.setFill(Color.WHITE);
         score.setFont(Font.font(35));
 
+        //score alignment
         VBox scoreCol = new VBox();
         scoreCol.getChildren().add(score);
         scoreCol.setAlignment(Pos.TOP_CENTER);
 
+        //canvas
         Canvas canvas = new Canvas(w, h);
         GraphicsContext context = canvas.getGraphicsContext2D();
 
-        Partie partie = new Partie(w,h);
+        //debug info
+        Text position = new Text();
+        position.setFill(Color.WHITE);
+        Text vitesse = new Text();
+        vitesse.setFill(Color.WHITE);
+        Text acceleration = new Text();
+        acceleration.setFill(Color.WHITE);
+        Text standingOnPlat = new Text();
+        standingOnPlat.setFill(Color.WHITE);
+
+        VBox debugInfo = new VBox(position, vitesse, acceleration, standingOnPlat);
+
+
+        Partie partie = new Partie(w, h);
+
 
         var timer = new AnimationTimer() {
             long lastTime = System.nanoTime();
@@ -47,12 +64,25 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
                 double deltaTemps = (now - lastTime) * 1e-9;
+
+
+                // update la partie + dessiner
                 partie.update(deltaTemps, now - startTime, lastTime);
                 partie.draw(context, now - startTime);
-                lastTime = now;
 
-
+                //score
                 score.setText((int) (java.lang.Math.floor(partie.getCamera().getTop() * -1)) + "px");
+
+
+                //debug info
+                position.setText(partie.getPositionInfo());
+                vitesse.setText(partie.getVitesseInfo());
+                acceleration.setText(partie.getAccelerationInfo());
+                standingOnPlat.setText(partie.getStandingOnPlateformInfo());
+
+
+
+                lastTime = now;
             }
         };
 
@@ -61,7 +91,7 @@ public class Main extends Application {
 
         timer.start();
 
-        root.getChildren().addAll(canvas, scoreCol);
+        root.getChildren().addAll(canvas, scoreCol, debugInfo);
         stage.setTitle("Super Meduse Bros");
         stage.setResizable(false);
         stage.getIcons().add(new Image("meduse1.png"));

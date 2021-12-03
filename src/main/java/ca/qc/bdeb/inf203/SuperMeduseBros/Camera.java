@@ -51,11 +51,12 @@ public class Camera {
         final double cameraFollowMedusaHeightPercent = 0.75; // % de la hauteur à laquelle la camera va suivre la méduse
 
         // Calcul de la vitesse en y
-        velocityY += accelerationY * deltaTemps;
+        if (!partie.isDebug()) {
+            velocityY += accelerationY * deltaTemps;
 
-        // Calcul de la nouvelle position en y
-        y += velocityY * deltaTemps;
-
+            // Calcul de la nouvelle position en y
+            y += velocityY * deltaTemps;
+        }
         //prendre la méduse de la partie
         Meduse meduse = partie.getMeduse();
 

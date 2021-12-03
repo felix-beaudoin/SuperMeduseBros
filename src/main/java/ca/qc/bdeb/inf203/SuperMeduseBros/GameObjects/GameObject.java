@@ -53,6 +53,22 @@ public abstract class GameObject {
         this.y = y;
     }
 
+    public double getVx() {
+        return vx;
+    }
+
+    public double getVy() {
+        return vy;
+    }
+
+    public double getAx() {
+        return ax;
+    }
+
+    public double getAy() {
+        return ay;
+    }
+
     public double getWidth() {
         return width;
     }
