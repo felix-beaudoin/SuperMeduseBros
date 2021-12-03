@@ -52,7 +52,7 @@ public class Meduse extends GameObject {
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
         boolean jump = (isKeyPressed(KeyCode.SPACE) || isKeyPressed(KeyCode.UP));
-        boolean isOnPlatform = isOnPlatform();
+        Plateforme standingPlateform = isOnPlatform();
 
         /* Rebondir sur les murs */
         if (getGauche() <= partie.getCamera().getX()) {
@@ -69,7 +69,7 @@ public class Meduse extends GameObject {
         } else if (!right && left) {
             ax = -ACCELERATION_X;
         } else {
-            double coefficientFrottement = isOnPlatform ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
+            double coefficientFrottement = (standingPlateform!=null) ? COEFFICIENT_FROTTEMENT_PLATFORM : COEFFICIENT_FROTTEMENT_AIR;
 
             if(Math.abs(vx)>MINIMUM_SPEED_FROTTEMENT) {
                 int signeVitesse = (vx > 0) ? 1 : -1;
@@ -88,6 +88,7 @@ public class Meduse extends GameObject {
         if (isOnPlatform) {// si collision avec plateforme
             if (jump) {
                 vy = JUMP; // si on saute, appliquer la vitesse vers le haut
+                standingPlateform.jumpOn();
             } else {
                 ay = 0; // si non, il faut rester immobile, sur la plateforme. aka ne pas tomber
                 if (vy > 0){ // si vitesse est vers le bas, on la reinitialise a 0.
@@ -101,10 +102,10 @@ public class Meduse extends GameObject {
         super.update(deltaTemps);
     }
 
-    private boolean isOnPlatform() {
-        System.out.println("--> " + vy);
+    private Plateforme isOnPlatform() {
+        //System.out.println("--> " + vy);
         if(vy<0 && !canJumpWhileJumping) { // on ne peut sauter que si on est immobile en y
-            return false;
+            return null;
         }
 
         for (Plateforme plateforme : partie.getPlatManager().getPlateformes()) {
@@ -113,10 +114,10 @@ public class Meduse extends GameObject {
             ) {
                 y = plateforme.getHaut() - height;
                 plateforme.landOn();
-                return true;
+                return plateforme;
             }
         }
-        return false;
+        return null;
     }
 
     @Override

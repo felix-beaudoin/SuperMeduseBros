@@ -14,5 +14,6 @@ public class PlateformeEphemere extends Plateforme {
     @Override
     public void jumpOn() {
         this.vy = 200;
+        System.out.println("ephemere disappear");
     }
 }

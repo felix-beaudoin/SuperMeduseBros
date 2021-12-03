@@ -18,8 +18,8 @@ public class PlateformeMouvante extends Plateforme {
         super.update(deltaTime);
         totalTime += deltaTime;
 
-        final double amplitude = 100;
-        final double vitesse = 5;
+        final double amplitude = 5;
+        final double vitesse = 2;
 
         x += Math.sin(totalTime * vitesse) * amplitude;
     }
