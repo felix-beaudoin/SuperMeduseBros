@@ -29,4 +29,10 @@ public class PlateformeRebondissante extends Plateforme {
 
         partie.getMeduse().vy = Math.min(newVy, minVy);
     }
+
+    @Override
+    public void jumpOn(){
+        //on veut le meme effet que landOn
+        partie.getMeduse().vy *= 1.5;
+    }
 }

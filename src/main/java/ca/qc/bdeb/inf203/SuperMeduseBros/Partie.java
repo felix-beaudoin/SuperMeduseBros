@@ -25,7 +25,7 @@ public class Partie {
     private String accelerationInfo;
     private String standingOnPlateformInfo;
     private boolean isGameLost = false;
-    protected double deltaTime;
+    private boolean canDebugModeSwitch = true;
 
     Set<GameObject> gameObjects = new HashSet<>();
 
@@ -59,21 +59,12 @@ public class Partie {
                 this
         );
 
-
         //add the gameObjects
         gameObjects.add(meduse);
 
     }
 
-    private void restart() {
-        //tmp implémentation
-        System.out.println("restart");
-        gameObjects.clear();
-        start();
-    }
-
-    public void update(double deltaTemps, long now, long lastTime) {
-        deltaTime = deltaTemps;
+    public void update(double deltaTemps, long now) {
 
         //update camera
         camera.update(deltaTemps);
@@ -92,12 +83,15 @@ public class Partie {
             bulle.update(deltaTemps);
         }
 
-        if (Input.isKeyPressed(KeyCode.T)){
+        boolean isTPressed = Input.isKeyPressed(KeyCode.T);
+        if (isTPressed && canDebugModeSwitch) {
             debug = !debug;
+            canDebugModeSwitch = false;
+        }else if(!isTPressed){
+            //quand on relache le T, on peut re-switch le mode debug
+            canDebugModeSwitch = true;
         }
-
         updateDebugInfo();
-
     }
 
     private void updateDebugInfo(){
@@ -146,7 +140,7 @@ public class Partie {
     }
 
     public int getScore(){
-        return (int) (java.lang.Math.floor(getCamera().getTop() * -1));
+        return (int) Math.floor(-getCamera().getTop());
     }
 
     public Camera getCamera() {
@@ -205,9 +199,5 @@ public class Partie {
 
     public String getStandingOnPlateformInfo() {
         return standingOnPlateformInfo;
-    }
-
-    public double getDeltaTime() {
-        return deltaTime;
     }
 }

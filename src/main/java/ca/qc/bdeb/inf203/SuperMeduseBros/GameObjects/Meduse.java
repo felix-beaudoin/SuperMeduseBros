@@ -58,8 +58,6 @@ public class Meduse extends GameObject {
         final double COEFFICIENT_FROTTEMENT_PLATFORM = 0.8;
         final double COEFFICIENT_FROTTEMENT_AIR = 0.5;
 
-        //TODO: on pourrait faire que certains types de plateformes aient un coefficient de frottement différent
-
         boolean left = isKeyPressed(KeyCode.LEFT);
         boolean right = isKeyPressed(KeyCode.RIGHT);
         boolean jump = (isKeyPressed(KeyCode.SPACE) || isKeyPressed(KeyCode.UP));
@@ -111,21 +109,13 @@ public class Meduse extends GameObject {
     }
 
     private Plateforme searchStandingPlatform() {
-        if (vy < 0 && !canJumpWhileJumping) { // on ne peut sauter que si on est immobile en y
+        if (vy < 0) { // on nest pas teleporter sur une plateforme quand on y est presque
             return null;
         }
 
         //determiner si la meduse est sur une plateforme
         for (Plateforme plat : partie.getPlatManager().getPlateformes()) {
-            //?x = v1 * t + (1/2) * a * t²
-            double newY = y + vy * partie.getDeltaTime() + 0.5 * ay * partie.getDeltaTime() * partie.getDeltaTime();
-            double newX = x + vx * partie.getDeltaTime() + 0.5 * ax * partie.getDeltaTime() * partie.getDeltaTime();
-
-            //https://stackoverflow.com/a/32088787
-            //TODO: collision avec les plateformes
-
-
-            if (plat.getHaut() <= this.getBas() && plat.getBas() > this.getBas() &&
+            if (plat.getHaut() <= this.getBas() && plat.getBas() >= this.getBas() &&
                     plat.getDroite() >= this.getGauche() && plat.getGauche() <= this.getDroite()
             ) {
                 y = plat.getHaut() - height;

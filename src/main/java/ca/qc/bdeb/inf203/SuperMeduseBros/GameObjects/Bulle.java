@@ -16,7 +16,6 @@ public class Bulle extends GameObject {
         vy = -(350 + Math.random() * 100);
         color = Color.rgb(0, 0, 255, 0.4);
         y = partie.getCamera().getBottom() + height / 2;
-        System.out.println("Camera y: " + partie.getCamera().getY() + " y: " + y);
         this.x = x + Math.random() * (2*OFFSET_X) - OFFSET_X;
     }
 
