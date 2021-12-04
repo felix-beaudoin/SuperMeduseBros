@@ -1,6 +1,7 @@
 package ca.qc.bdeb.inf203.SuperMeduseBros;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -20,6 +21,7 @@ public class Main extends Application {
         gameManager.displayMenu();
 
         //show the stage
+        stage.getIcons().add(new Image("meduse1.png"));
         stage.setTitle("Super Meduse Bros");
         stage.setResizable(false);
         stage.show();
