@@ -252,11 +252,6 @@ public class GameManager {
             public MyObjectOutputStream(OutputStream out) throws IOException {
                 super(out);
             }
-
-            protected MyObjectOutputStream() throws IOException, SecurityException {
-            }
-
-            // Method of this class
             public void writeStreamHeader() {
             }
         }

@@ -9,7 +9,7 @@ public class PlateformeMouvante extends Plateforme {
 
     private double totalTime = 0;
     private double vitesse;
-    private double amplitude;
+    private final double amplitude;
 
     public PlateformeMouvante(double x, double y, double width, Partie partie) {
         super(x, y, width, COULEUR , partie);

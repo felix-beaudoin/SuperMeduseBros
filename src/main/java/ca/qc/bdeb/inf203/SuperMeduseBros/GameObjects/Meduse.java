@@ -6,11 +6,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
-import java.util.function.Function;
 
 import static ca.qc.bdeb.inf203.SuperMeduseBros.Input.isKeyPressed;
 
@@ -27,7 +22,6 @@ public class Meduse extends GameObject {
     //constants
     public static final double WIDTH = 50;
     public static final double HEIGHT = 50;
-    private final boolean canJumpWhileJumping = false; //si la méduse peut sauter quand elle est en train de monter
     private Plateforme standingPlatform;
 
     public Meduse(double x, double y, Partie partie) {
