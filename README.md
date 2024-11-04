@@ -14,9 +14,9 @@ Jelly can be controled by using left and right arrow keys and the space bar. [He
 
 
 ## Implemented
-`
-Physics engine
-5+ platform types
-Background animations
-High score & score ranking system
-`
+
+    Physics engine
+    5+ different platform types
+    Background animations
+    High score & score ranking system
+
